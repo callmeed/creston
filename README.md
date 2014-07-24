@@ -13,6 +13,6 @@ Installation
 
 [Like the town it was named after](http://en.wikipedia.org/wiki/Creston,_California), Creston is small, ugly, and not a gem. To install Creston, just clone the repo and copy the deploy.sh and .crestonignore files to the root of your Rails project locally. 
 
-Then, edit the 3 lines of the deploy.sh file with the details of your remote server. 
+Then, edit the 4 lines of the deploy.sh file with the details of your remote server. 
 
-Once, you've done that, just run `./deploy.sh` from the terminal. Your Rails files will rsync to your server. 
+Once, you've done that, just run `./deploy.sh` or `./deploy.sh rvm` (if your server uses rvm) from the terminal. Your Rails files will rsync to your server, then the bundle cmd will be called, and finally the migration rake task is run. 
