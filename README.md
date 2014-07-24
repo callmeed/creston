@@ -1,7 +1,7 @@
 Creston
 =======
 
-Creston is a very tiny deployment script for deploying Rails 4 applications. For those times when Capistrano is overkill &amp; Heroku is too expensive. 
+Creston is a very tiny shell script for deploying Rails 4 applications. For those times when Capistrano is overkill &amp; Heroku is too expensive. 
 
 Warning
 -----
@@ -15,11 +15,17 @@ Installation
 
 [Like the town it was named after](http://en.wikipedia.org/wiki/Creston,_California), Creston is small, ugly, and not a gem. To install Creston, just clone the repo and copy the deploy.sh and .crestonignore files to the root of your Rails project locally. 
 
-Then, edit the 4 lines of the deploy.sh file with the details of your remote server. 
+Then, edit the 4 lines of the deploy.sh file with the details of your remote server. Creston assumes you have public key authentication setup on your server (i.e. you can ssh in without a passoword). 
 
 Once, you've done that, just run `./deploy.sh` or `./deploy.sh rvm` (if your server uses rvm) from the terminal. Your Rails files will rsync to your server, then the bundle cmd will be called, and finally the migration rake task is run. 
 
 Digital Ocean Rails Image
 -----
 
-One thing that prompted me to build this was [Digital Ocean's Ruby-on-Rails one-click image](https://www.digitalocean.com/features/one-click-apps/). It's a great way to get a Rails server deployed quickly and cheaply. Creston should work with that configuration almost out of the box. 
+One thing that prompted me to build this was [Digital Ocean's Ruby-on-Rails one-click image](https://www.digitalocean.com/features/one-click-apps/). It's a great way to get a Rails server deployed quickly and cheaply. Creston should work with that configuration almost out of the box. The only thing you have to do is make sure your ssh user (usually `rails`) has sudo permissions to restart nginx and unicorn. 
+
+To-Dos
+-----
+
+- Add support for setting environment variables on deploy
+- Add Git repo support (maybe a [git archive master like this](http://stackoverflow.com/questions/160608/how-to-do-a-git-export-like-svn-export))

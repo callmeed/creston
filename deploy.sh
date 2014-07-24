@@ -23,6 +23,7 @@ REMOTE_SERVER="host_name.com"
 REMOTE_USER="username"
 REMOTE_PATH="path"
 RVM_SOURCE_PATH="/usr/local/rvm/environments/ruby-2.0.0-p353"
+RESTART_CMD="sudo /etc/init.d/nginx restart && sudo /etc/init.d/unicorn restart"
 
 ############################################
 # THIS IS WHERE THE MAGIC HAPPENS
@@ -50,3 +51,7 @@ ssh $REMOTE_USER@$REMOTE_SERVER "$BUNDLE_CMD"
 # Step 3: Migrate
 echo "===== MIGRATING ... ====="
 ssh $REMOTE_USER@$REMOTE_SERVER "$MIGRATE_CMD"
+
+# Step 4: Restart
+echo "===== RESTARTING ... ====="
+ssh $REMOTE_USER@$REMOTE_SERVER "$RESTART_CMD"
